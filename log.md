@@ -1,6 +1,7 @@
 # Development Log - Cliff Walking (Q-Learning vs SARSA)
 
 ## [2026-05-03]
+
 - Initialized project.
 - Planned the structure: `cliff_walking.py`, `agents.py`, `train.py`, `analysis.py`.
 - Implemented `CliffWalkingEnv` in `cliff_walking.py`.
@@ -10,7 +11,9 @@
 - Started implementing `analysis.py` for visualization and report.
 
 ## [2026-05-03] — 改進與完善
+
 ### 評估發現的不足
+
 - 到達終點獎勵改為 -1（每步一律 -1）
 - 只有單次實驗，缺乏統計意義
 - 獎勵曲線缺少信賴區間
@@ -19,6 +22,7 @@
 - 缺少 Q 值熱力圖
 
 ### 修改內容
+
 1. **`cliff_walking.py`**: 增加常數定義、docstring、到達終點獎勵改為 -1、cliff 改為 set 提升查找效率
 2. **`agents.py`**: 增加 `get_greedy_action()` 方法、完善 docstring
 3. **`train.py`**: 新增 `run_multiple_experiments()` 支援 30 次獨立實驗、統計摘要
@@ -35,8 +39,13 @@
    - 應用場景建議表
 
 ### 重新訓練結果（30 次 × 500 回合）
+
 - Q-Learning 最後 50 回合平均: -48.34 ± 9.47
 - SARSA 最後 50 回合平均: -23.49 ± 3.66
 - SARSA 更穩定（CV: 0.84 vs 1.41）
 - Q-Learning greedy 路徑: 13 步（懸崖邊緣）
 - SARSA greedy 路徑: 17 步（最頂部安全路線）
+
+## [2026-05-06]
+
+- 解釋了 `analysis.py` 中 `reward_plot.png` 左右兩圖的差異：左圖為原始數據（Raw），展示訓練過程的隨機波動；右圖為平滑數據（Smoothed, window=20），用於更清晰地觀察收斂趨勢。
